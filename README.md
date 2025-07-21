@@ -263,3 +263,58 @@ if choix == 0 || choix > options.len() {
     println!("Sélectionné : {}", options[choix - 1]);
 }
 ```
+
+## 10. Gestion des fichiers et gestion d'erreurs
+
+On peut créer, écrire et lire dans des fichiers avec Rust. Il faut gérer les erreurs qui peuvent arriver.
+
+### Écriture de fichier
+```rust
+use std::fs::File;
+use std::io::{self, Write};
+
+fn main() -> io::Result<()> {
+    let mut file = File::create("test.txt")?; // Créer ou écraser un fichier
+    file.write_all(b"Bonjour à tous, fichier créé!")?; // Écrire des données
+    println!("Le fichier a été créé avec succès !");
+    Ok(()) // Signifie que tout s'est bien passé
+}
+```
+
+### Lecture d'un fichier
+```rust
+rustuse std::fs::File;
+use std::io::{self, BufReader, Read};
+
+fn main() -> io::Result<()> {
+    let file = File::open("test.txt")?; // Ouvrir le fichier existant
+    let mut reader = BufReader::new(file); // Créer un lecteur tamponné
+    let mut content = String::new();
+    reader.read_to_string(&mut content)?; // Lire tout le contenu
+    println!("Contenu du fichier : {}", content);
+    
+    // Pause pour maintenir le terminal ouvert
+    let mut choix = String::new();
+    io::stdin().read_line(&mut choix)?;
+    
+    Ok(())
+}
+```
+
+### Concepts clés
+
+**`io::Result<()>`** : Type de retour qui peut être soit `Ok(())` (succès) soit `Err(e)` (erreur)
+- `Ok(())` : opération réussie, le `()` signifie "rien à retourner"
+- `Err(e)` : une erreur I/O s'est produite
+
+**L'opérateur `?`** : Propagation automatique d'erreur. Si une erreur survient, elle remonte automatiquement au niveau supérieur.
+
+**Byte string `b"..."`** : Utilisé pour travailler avec des données binaires plutôt que du texte Unicode.
+
+**BufReader** : lecteur tamponné qui améliore les performances de lecture
+
+**read_to_string()** : lit l'intégralité du fichier dans une chaîne
+
+**Imports nécessaires :**
+- `std::fs::File` : pour créer et manipuler des fichiers
+- `std::io::{self, Write, BufReader, Read}` : pour les opérations de lecture et d'écriture et gestion d'erreurs I/O
