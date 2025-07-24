@@ -1,0 +1,12 @@
+[2025-07-24T13:30:35Z] Serveur de journalisation démarré
+[2025-07-24T13:31:11Z] Client1: GET / HTTP/1.1
+[2025-07-24T13:31:11Z] Client1: Host: 127.0.0.1:8080
+[2025-07-24T13:31:13Z] Client2: GET / HTTP/1.1
+[2025-07-24T13:31:13Z] Client2: Host: 127.0.0.1:8080
+[2025-07-24T13:31:15Z] Client3: GET / HTTP/1.1
+[2025-07-24T13:31:15Z] Client3: Host: 127.0.0.1:8080
+[2025-07-24T13:31:20Z] Client4: GET / HTTP/1.1
+[2025-07-24T13:31:20Z] Client4: Host: 127.0.0.1:8080
+[2025-07-24T13:48:18Z] Client 1: hello
+[2025-07-24T13:48:33Z] Client 1: nouhaila!
+[2025-07-24T13:48:51Z] Client 2: Byby!
